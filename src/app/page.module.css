@@ -1,0 +1,377 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 80px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+}
+
+.main ol {
+  font-family: var(--font-geist-mono);
+  padding-left: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  list-style-position: inside;
+}
+
+.main li:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.main code {
+  font-family: inherit;
+  background: var(--gray-alpha-100);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.ctas {
+  display: flex;
+  gap: 16px;
+}
+
+.ctas a {
+  appearance: none;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border: 1px solid transparent;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+a.primary {
+  background: var(--foreground);
+  color: var(--background);
+  gap: 8px;
+}
+
+a.secondary {
+  border-color: var(--gray-alpha-200);
+  min-width: 158px;
+}
+
+.footer {
+  grid-row-start: 3;
+  display: flex;
+  gap: 24px;
+}
+
+.footer a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer img {
+  flex-shrink: 0;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    background: var(--button-primary-hover);
+    border-color: transparent;
+  }
+
+  a.secondary:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 32px;
+    padding-bottom: 80px;
+  }
+
+  .main {
+    align-items: center;
+  }
+
+  .main ol {
+    text-align: center;
+  }
+
+  .ctas {
+    flex-direction: column;
+  }
+
+  .ctas a {
+    font-size: 14px;
+    height: 40px;
+    padding: 0 16px;
+  }
+
+  a.secondary {
+    min-width: auto;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert();
+  }
+}
+
+/* filepath: d:\newproject\klyk\src\app\page.module.css */
+.heroSection {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #5fb0d7 0%, #f7e6d4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  padding: 150px 50px 0 50px;
+  overflow: hidden;
+}
+
+.logoRow {
+  margin-left: 80px;
+  margin-bottom: 32px;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+}
+
+.textBlock {
+  margin-left: 80px;
+  margin-top: 40px;
+  max-width: 600px;
+}
+
+.headline {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f58301;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: #092c58;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background: #fff;
+  color: #092c58;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 32px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s, color 0.2s;
+}
+
+.ctaBtn:hover {
+  background: #00832c;
+  color: #ffffff;
+}
+
+.heroImageWrapper {
+  position: absolute;
+  right: 130px;
+  top: 100px;
+  max-width: 600px;
+  z-index: 1;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.popupIcon {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #fff;
+  color: #007bff;
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  z-index: 100;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.popupIcon:hover {
+  background: #eaf6ff;
+  color: #0056b3;
+}
+
+.popupText {
+  line-height: 1.1;
+  font-size: 0.95rem;
+  padding: 8px;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 28px 24px 28px;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+  position: relative;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #007bff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.contactForm label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+.contactForm input,
+.contactForm textarea {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #cbe5ff;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #f7fbff;
+  resize: none;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  outline: 2px solid #007bff;
+  border-color: #007bff;
+}
+
+.submitBtn {
+  margin-top: 10px;
+  background: #007bff;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background: #0056b3;
+}
