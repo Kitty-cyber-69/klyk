@@ -5,20 +5,21 @@ import Link from 'next/link';
 import './nav.css';
 
 export default function Nav() {
-
     const [scroll, setScroll] = useState(0);
     const [navList, setNavList] = useState(nav);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        setIsMounted(true);
+        const handleScroll = () => {
             setScroll(window.scrollY);
-        });
-        return () => {
-            window.removeEventListener('scroll', () => {
-                setScroll(window.scrollY);
-            });
         };
-    }, [scroll]);
+        
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleNavOnClick = id => {
         const newNavList = navList.map(nav => {
@@ -34,6 +35,12 @@ export default function Nav() {
         document.body.classList.remove('box-collapse-closed');
         document.body.classList.add('box-collapse-open');
     };
+
+    // Don't render anything until after hydration
+    if (!isMounted) {
+        return null;
+    }
+
     return (
         <nav className={`navbar navbar-default navbar-expand-lg fixed-top ${scroll > 100 ? 'navbar-raduce' : 'navbar-trans'}`}>
             <div
@@ -53,7 +60,7 @@ export default function Nav() {
                     }}
                 >
                     <img
-                        src="/logo.png"
+                        src="/images/logo.png"
                         alt="KLYK Logo"
                         style={{ height: '120px', objectFit: 'contain' }} // Change size freely here
                     />
@@ -115,7 +122,5 @@ export default function Nav() {
 
             </div>
         </nav>
-
-
-    )
+    );
 }

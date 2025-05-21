@@ -32,6 +32,8 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .main ol {
@@ -169,16 +171,12 @@ a.secondary {
 
 /* filepath: d:\newproject\klyk\src\app\page.module.css */
 .heroSection {
-  min-height: 100vh;
-  width: 100vw;
-  background: linear-gradient(120deg, #5fb0d7 0%, #f7e6d4 100%);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  position: relative;
-  padding: 150px 50px 0 50px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 80vh;
 }
 
 .logoRow {
@@ -192,56 +190,62 @@ a.secondary {
 }
 
 .textBlock {
-  margin-left: 80px;
-  margin-top: 40px;
+  flex: 1;
   max-width: 600px;
+  padding-right: 2rem;
 }
 
 .headline {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: #f58301;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .tagline {
-  font-size: 1.25rem;
-  color: #092c58;
-  margin-bottom: 32px;
-  font-weight: 400;
+  font-size: 1.5rem;
+  color: #636e72;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .ctaBtn {
   display: inline-block;
-  background: #fff;
-  color: #092c58;
-  font-weight: 700;
-  padding: 16px 40px;
-  border-radius: 32px;
-  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  background: #0984e3;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  transition: background 0.2s, color 0.2s;
-}
-
-.ctaBtn:hover {
-  background: #00832c;
-  color: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(9, 132, 227, 0.3);
 }
 
 .heroImageWrapper {
-  position: absolute;
-  right: 130px;
-  top: 100px;
+  flex: 1;
   max-width: 600px;
-  z-index: 1;
+  position: relative;
 }
 
-.heroImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+.heroPlaceholder {
+  background: #0984e3;
+  color: white;
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.heroPlaceholder i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.heroPlaceholder span {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .popupIcon {
@@ -283,95 +287,337 @@ a.secondary {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 2000;
+  align-items: center;
+  z-index: 1000;
 }
 
 .modalContent {
-  background: #fff;
-  border-radius: 18px;
-  padding: 32px 28px 24px 28px;
-  min-width: 320px;
-  max-width: 90vw;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
   position: relative;
-  animation: fadeIn 0.2s;
 }
 
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #636e72;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #2d3436;
+}
+
+.contactForm input,
+.contactForm textarea {
+  padding: 0.75rem;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.submitBtn {
+  background: #0984e3;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Trust Badges Section */
+.trustSection {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: white;
+}
+
+.trustSection h2 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  margin-bottom: 3rem;
+}
+
+.trustBadges {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badgeIcon {
+  width: 80px;
+  height: 80px;
+  background: #0984e3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.badgeIcon i {
+  font-size: 2rem;
+}
+
+.badge span {
+  font-weight: 600;
+  color: #2d3436;
+}
+
+/* News Section */
+.newsSection {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+}
+
+.newsSection h2 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.newsCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.newsIcon {
+  width: 60px;
+  height: 60px;
+  background: #0984e3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.newsIcon i {
+  font-size: 1.5rem;
+}
+
+.newsContent {
+  padding: 0;
+}
+
+.newsContent h3 {
+  font-size: 1.25rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.newsContent p {
+  color: #636e72;
+  margin-bottom: 1rem;
+}
+
+.readMore {
+  color: #0984e3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Portfolio Section */
+.portfolioSection {
+  padding: 4rem 2rem;
+  background: white;
+}
+
+.portfolioSection h2 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.portfolioGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolioItem {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolioIcon {
+  width: 80px;
+  height: 80px;
+  background: #0984e3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.portfolioIcon i {
+  font-size: 2rem;
+}
+
+.portfolioOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(9, 132, 227, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.portfolioItem:hover .portfolioOverlay {
+  opacity: 1;
+}
+
+/* FAQ Section */
+.faqSection {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+}
+
+.faqSection h2 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.faqItem h3 {
+  color: #2d3436;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.faqItem p {
+  color: #636e72;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 1rem;
+  }
+
+  .textBlock {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .headline {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+  }
+
+  .trustBadges {
+    gap: 2rem;
+  }
+
+  .newsGrid,
+  .portfolioGrid,
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.closeBtn {
-  position: absolute;
-  top: 12px;
-  right: 18px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #007bff;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.contactForm {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.contactForm label {
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 4px;
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
-}
-
-.contactForm input,
-.contactForm textarea {
-  margin-top: 6px;
-  padding: 10px 12px;
-  border: 1px solid #cbe5ff;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  background: #f7fbff;
-  resize: none;
-}
-
-.contactForm input:focus,
-.contactForm textarea:focus {
-  outline: 2px solid #007bff;
-  border-color: #007bff;
-}
-
-.submitBtn {
-  margin-top: 10px;
-  background: #007bff;
-  color: #fff;
-  font-weight: 700;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 0;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.submitBtn:hover {
-  background: #0056b3;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

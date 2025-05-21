@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import styles from "./page.module.css";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -15,54 +15,203 @@ export default function Home() {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <div className={styles.heroSection}>
-      {/* Headline & Tagline */}
-      <div className={styles.textBlock}>
-        <h1 className={styles.headline}>Welcome to Klyk!</h1>
-        <h3 className={styles.tagline}>
-          Empowering Learning Through Expert-Led Training in Electrical Vehicle
-          Technology
-        </h3>
-        {/* Call to Action */}
-        <a
-          href="#"
-          className={styles.ctaBtn}
-          onClick={handleOpenModal}
+    <main className={styles.main}>
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <motion.div 
+          className={styles.textBlock}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          Contact Us Today!
-        </a>
-      </div>
+          <h1 className={styles.headline}>Welcome to Klyk!</h1>
+          <h3 className={styles.tagline}>
+            Empowering Learning Through Expert-Led Training in Electrical Vehicle Technology
+          </h3>
+          <motion.a
+            href="#contact"
+            className={styles.ctaBtn}
+            onClick={handleOpenModal}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact Us Today!
+          </motion.a>
+        </motion.div>
 
-      {/* Hero Illustration */}
-      <div className={styles.heroImageWrapper}>
-        <Image
-          src="/hero.png" // Replace with your illustration
-          alt="Hero Illustration"
-          width={600}
-          height={400}
-          className={styles.heroImage}
-          priority
-        />
-      </div>
+        <motion.div 
+          className={styles.heroImageWrapper}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className={styles.heroPlaceholder}>
+            <i className="bi bi-lightning-charge-fill"></i>
+            <span>EV Technology Training</span>
+          </div>
+        </motion.div>
+      </section>
 
-      {/* Pop-up Registration Icon */}
-      <Link
-        href="/register"
-        className={styles.popupIcon}
-        title="Register for Advanced EV Certification Program"
-      >
-        <span className={styles.popupText}>
-          Registration
-          <br />
-          Coming Soon!
-        </span>
-      </Link>
+      {/* Trust Badges Section */}
+      <section className={styles.trustSection}>
+        <h2>Trusted By Industry Leaders</h2>
+        <div className={styles.trustBadges}>
+          <motion.div 
+            className={styles.badge}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <div className={styles.badgeIcon}>
+              <i className="bi bi-award"></i>
+            </div>
+            <span>ISO 9001:2015</span>
+          </motion.div>
+          <motion.div 
+            className={styles.badge}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <div className={styles.badgeIcon}>
+              <i className="bi bi-shield-check"></i>
+            </div>
+            <span>Industry Certified</span>
+          </motion.div>
+          <motion.div 
+            className={styles.badge}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <div className={styles.badgeIcon}>
+              <i className="bi bi-star"></i>
+            </div>
+            <span>Quality Assured</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Latest News/Blog Section */}
+      <section className={styles.newsSection}>
+        <h2>Latest in EV Technology</h2>
+        <div className={styles.newsGrid}>
+          {[
+            {
+              title: "Latest Developments in EV Technology",
+              content: "Exploring the future of electric vehicles and sustainable transportation...",
+              icon: "bi-lightning"
+            },
+            {
+              title: "New Training Programs",
+              content: "Introducing our latest curriculum updates and specialized courses...",
+              icon: "bi-book"
+            },
+            {
+              title: "Industry Insights",
+              content: "Stay updated with the latest trends and innovations in EV technology...",
+              icon: "bi-graph-up"
+            }
+          ].map((item, index) => (
+            <motion.article 
+              key={index}
+              className={styles.newsCard}
+              whileHover={{ y: -10 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className={styles.newsIcon}>
+                <i className={`bi ${item.icon}`}></i>
+              </div>
+              <div className={styles.newsContent}>
+                <h3>{item.title}</h3>
+                <p>{item.content}</p>
+                <Link href="/blog" className={styles.readMore}>Read More</Link>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      {/* Portfolio Preview */}
+      <section className={styles.portfolioSection}>
+        <h2>Our Work</h2>
+        <div className={styles.portfolioGrid}>
+          {[
+            { title: "EV Training Program", icon: "bi-car-front" },
+            { title: "Corporate Workshops", icon: "bi-building" },
+            { title: "Technical Documentation", icon: "bi-file-text" },
+            { title: "Online Learning Platform", icon: "bi-laptop" }
+          ].map((item, index) => (
+            <motion.div 
+              key={index}
+              className={styles.portfolioItem}
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+            >
+              <div className={styles.portfolioIcon}>
+                <i className={`bi ${item.icon}`}></i>
+              </div>
+              <div className={styles.portfolioOverlay}>
+                <h3>{item.title}</h3>
+                <p>View Details</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className={styles.faqSection}>
+        <h2>Frequently Asked Questions</h2>
+        <div className={styles.faqGrid}>
+          {[
+            {
+              q: "What makes KLYK's training unique?",
+              a: "Our training combines live weekend classes, direct instructor access, and hands-on experience with real EV components."
+            },
+            {
+              q: "How long are the training programs?",
+              a: "Programs vary from 4-week intensive courses to 12-week comprehensive training, depending on your needs."
+            },
+            {
+              q: "Do you offer corporate training?",
+              a: "Yes, we provide customized corporate training programs tailored to your organization's specific needs."
+            },
+            {
+              q: "What are the prerequisites for enrollment?",
+              a: "Basic understanding of automotive technology is recommended, but we welcome all enthusiastic learners."
+            }
+          ].map((faq, index) => (
+            <motion.div 
+              key={index}
+              className={styles.faqItem}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <h3>{faq.q}</h3>
+              <p>{faq.a}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* Contact Modal */}
       {showModal && (
-        <div className={styles.modalOverlay} onClick={handleCloseModal}>
-          <div
+        <motion.div 
+          className={styles.modalOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleCloseModal}
+        >
+          <motion.div 
             className={styles.modalContent}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
             <button className={styles.closeBtn} onClick={handleCloseModal}>
@@ -90,13 +239,18 @@ export default function Home() {
                 Your Query
                 <textarea name="query" rows={4} required />
               </label>
-              <button type="submit" className={styles.submitBtn}>
+              <motion.button 
+                type="submit" 
+                className={styles.submitBtn}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Submit
-              </button>
+              </motion.button>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </div>
+    </main>
   );
 }

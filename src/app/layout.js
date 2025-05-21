@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,12 +37,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true' />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
       </head>
       <body className={`${poppins.variable} ${poppins.variable}`}>
         <Nav />
         {children}
+        <Footer />
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
