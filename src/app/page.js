@@ -4,8 +4,28 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./page.module.css";
 
+const faqData = [
+  {
+    q: "What makes KLYK's training unique?",
+    a: "Our training combines live weekend classes, direct instructor access, and hands-on experience with real EV components."
+  },
+  {
+    q: "How long are the training programs?",
+    a: "Programs vary from 4-week intensive courses to 12-week comprehensive training, depending on your needs."
+  },
+  {
+    q: "Do you offer corporate training?",
+    a: "Yes, we provide customized corporate training programs tailored to your organization's specific needs."
+  },
+  {
+    q: "What are the prerequisites for enrollment?",
+    a: "Basic understanding of automotive technology is recommended, but we welcome all enthusiastic learners."
+  }
+];
+
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
   const handleOpenModal = (e) => {
     e.preventDefault();
@@ -45,10 +65,11 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className={styles.heroPlaceholder}>
-            <i className="bi bi-lightning-charge-fill"></i>
-            <span>EV Technology Training</span>
-          </div>
+          <img
+            src="/images/home.png"
+            alt="EV Technology Training"
+            className={styles.heroImage}
+          />
         </motion.div>
       </section>
 
@@ -164,38 +185,28 @@ export default function Home() {
       {/* FAQ Section */}
       <section className={styles.faqSection}>
         <h2>Frequently Asked Questions</h2>
-        <div className={styles.faqGrid}>
-          {[
-            {
-              q: "What makes KLYK's training unique?",
-              a: "Our training combines live weekend classes, direct instructor access, and hands-on experience with real EV components."
-            },
-            {
-              q: "How long are the training programs?",
-              a: "Programs vary from 4-week intensive courses to 12-week comprehensive training, depending on your needs."
-            },
-            {
-              q: "Do you offer corporate training?",
-              a: "Yes, we provide customized corporate training programs tailored to your organization's specific needs."
-            },
-            {
-              q: "What are the prerequisites for enrollment?",
-              a: "Basic understanding of automotive technology is recommended, but we welcome all enthusiastic learners."
-            }
-          ].map((faq, index) => (
-            <motion.div 
-              key={index}
-              className={styles.faqItem}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <h3>{faq.q}</h3>
-              <p>{faq.a}</p>
-            </motion.div>
+        <ul className={styles.faqList}>
+          {faqData.map((faq, index) => (
+            <li key={index} className={styles.faqListItem}>
+              <button
+                className={styles.faqQuestionBtn}
+                onMouseEnter={() => setOpenFaq(index)}
+                onMouseLeave={()=> setOpenFaq(index)}
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                aria-expanded={openFaq === index}
+                aria-controls={`faq-answer-${index}`}
+              >
+                <span>{faq.q}</span>
+                <i className={`bi bi-chevron-${openFaq === index ? 'up' : 'down'} ${styles.faqIcon}`}></i>
+              </button>
+              {openFaq === index && (
+                <div id={`faq-answer-${index}`} className={styles.faqAnswerList}>
+                  <p>{faq.a}</p>
+                </div>
+              )}
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Contact Modal */}

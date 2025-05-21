@@ -3,43 +3,28 @@ import React, { useState, useEffect } from 'react'
 import nav from '../data/nav'
 import Link from 'next/link';
 import './nav.css';
+import { usePathname } from 'next/navigation';
 
 export default function Nav() {
     const [scroll, setScroll] = useState(0);
-    const [navList, setNavList] = useState(nav);
-    const [isMounted, setIsMounted] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        setIsMounted(true);
         const handleScroll = () => {
             setScroll(window.scrollY);
         };
-        
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    const handleNavOnClick = id => {
-        const newNavList = navList.map(nav => {
-            nav.active = false;
-            if (nav.id === id) nav.active = true;
-            return nav;
-        });
-
-        setNavList(newNavList);
-    }
+    const handleNavOnClick = id => {} // No longer needed for active state
 
     const handleOpenSearchForm = () => {
         document.body.classList.remove('box-collapse-closed');
         document.body.classList.add('box-collapse-open');
     };
-
-    // Don't render anything until after hydration
-    if (!isMounted) {
-        return null;
-    }
 
     return (
         <nav className={`navbar navbar-default navbar-expand-lg fixed-top ${scroll > 100 ? 'navbar-raduce' : 'navbar-trans'}`}>
@@ -79,18 +64,13 @@ export default function Nav() {
                     }}
                 >
                     <ul className="navbar-nav">
-                        {navList.map((item) => (
+                        {nav.map((item) => (
                             <li className="nav-item" key={item.id}>
                                 <Link
-                                    className={`nav-link ${item.active ? 'active' : ''}`}
+                                    className={`nav-link${pathname === item.link ? ' active' : ''}`}
                                     href={item.link}
-                                    onClick={() => handleNavOnClick(item.id)}
                                 >
-                                    {item.name === 'Home' ? (
-                                        <i className="bi bi-house-door-fill nav-link"></i>
-                                    ) : (
-                                        item.name
-                                    )}
+                                    {item.name}
                                 </Link>
                             </li>
                         ))}
