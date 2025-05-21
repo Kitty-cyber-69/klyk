@@ -220,7 +220,7 @@ a.secondary {
 
 .ctaBtn {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.7rem 1.5rem;
   background: #0984e3;
   color: white;
   border-radius: 50px;
@@ -228,6 +228,14 @@ a.secondary {
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(9, 132, 227, 0.3);
+  font-size: 1.1rem;
+}
+
+.ctaBtn:hover {
+  background: #cc5500;
+  color: #000000;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(204, 85, 0, 0.4);
 }
 
 .heroImageWrapper {
@@ -625,13 +633,13 @@ a.secondary {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 900px;
-  height: 600px;
-  max-width: 100vw;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
   transform: translate(-50%, -50%);
   background: url('/images/faq.png') no-repeat center center;
-  background-size: contain;
+  background-size: cover;
   opacity: 0.13;
   filter: blur(1.5px);
   z-index: 0;

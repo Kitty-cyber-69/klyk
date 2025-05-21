@@ -50,6 +50,52 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.serviceCard:hover::before {
+  opacity: 0.15;
+}
+
+.serviceCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Specific service card backgrounds */
+.curriculumCard::before {
+  background-image: url('/images/curriculm.png');
+}
+
+.evLearningCard::before {
+  background-image: url('/images/evlearning.png');
+}
+
+.corporateTrainingCard::before {
+  background-image: url('/images/corporatetraining.png');
+}
+
+.technicalDocsCard::before {
+  background-image: url('/images/technical docs.png');
+}
+
+.videoProductionCard::before {
+  background-image: url('/images/video production.png');
 }
 
 .serviceCard:hover {

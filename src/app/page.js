@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./page.module.css";
+import ScrollReveal from './components/ScrollReveal';
 
 const faqData = [
   {
@@ -35,84 +36,90 @@ export default function Home() {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <main className={styles.main}>
+    <div className={styles.container}>
       {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <motion.div 
-          className={styles.textBlock}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className={styles.headline}>Welcome to Klyk!</h1>
-          <h3 className={styles.tagline}>
-            Empowering Learning Through Expert-Led Training in Electrical Vehicle Technology
-          </h3>
-          <motion.a
-            href="#contact"
-            className={styles.ctaBtn}
-            onClick={handleOpenModal}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <section className={styles.hero}>
+        <section className={styles.heroSection}>
+          <motion.div 
+            className={styles.textBlock}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Contact Us Today!
-          </motion.a>
-        </motion.div>
+            <h1 className={styles.headline}>Welcome to Klyk!</h1>
+            <h3 className={styles.tagline}>
+              Empowering Learning Through Expert-Led Training in Electrical Vehicle Technology
+            </h3>
+            <motion.a
+              href="#contact"
+              className={styles.ctaBtn}
+              onClick={handleOpenModal}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Contact Us Today!
+            </motion.a>
+          </motion.div>
 
-        <motion.div 
-          className={styles.heroImageWrapper}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <img
-            src="/images/home.png"
-            alt="EV Technology Training"
-            className={styles.heroImage}
-          />
-        </motion.div>
+          <motion.div 
+            className={styles.heroImageWrapper}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <img
+              src="/images/home.png"
+              alt="EV Technology Training"
+              className={styles.heroImage}
+            />
+          </motion.div>
+        </section>
       </section>
 
       {/* Trust Badges Section */}
-      <section className={styles.trustSection}>
-        <h2>Trusted By Industry Leaders</h2>
-        <div className={styles.trustBadges}>
-          <motion.div 
-            className={styles.badge}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <div className={styles.badgeIcon}>
-              <i className="bi bi-award"></i>
-            </div>
-            <span>ISO 9001:2015</span>
-          </motion.div>
-          <motion.div 
-            className={styles.badge}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <div className={styles.badgeIcon}>
-              <i className="bi bi-shield-check"></i>
-            </div>
-            <span>Industry Certified</span>
-          </motion.div>
-          <motion.div 
-            className={styles.badge}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <div className={styles.badgeIcon}>
-              <i className="bi bi-star"></i>
-            </div>
-            <span>Quality Assured</span>
-          </motion.div>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className={styles.trustSection}>
+          <h2>Trusted By Industry Leaders</h2>
+          <div className={styles.trustBadges}>
+            <motion.div 
+              className={styles.badge}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className={styles.badgeIcon}>
+                <i className="bi bi-award"></i>
+              </div>
+              <span>ISO 9001:2015</span>
+            </motion.div>
+            <motion.div 
+              className={styles.badge}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className={styles.badgeIcon}>
+                <i className="bi bi-shield-check"></i>
+              </div>
+              <span>Industry Certified</span>
+            </motion.div>
+            <motion.div 
+              className={styles.badge}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <div className={styles.badgeIcon}>
+                <i className="bi bi-star"></i>
+              </div>
+              <span>Quality Assured</span>
+            </motion.div>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Latest News/Blog Section */}
       <section className={styles.newsSection}>
-        <h2>Latest in EV Technology</h2>
+        <ScrollReveal>
+          <h2>Latest in EV Technology</h2>
+        </ScrollReveal>
         <div className={styles.newsGrid}>
           {[
             {
@@ -154,7 +161,9 @@ export default function Home() {
 
       {/* Portfolio Preview */}
       <section className={styles.portfolioSection}>
-        <h2>Our Work</h2>
+        <ScrollReveal>
+          <h2>Our Work</h2>
+        </ScrollReveal>
         <div className={styles.portfolioGrid}>
           {[
             { title: "EV Training Program", icon: "bi-car-front" },
@@ -184,27 +193,31 @@ export default function Home() {
 
       {/* FAQ Section */}
       <section className={styles.faqSection}>
-        <h2>Frequently Asked Questions</h2>
+        <ScrollReveal>
+          <h2>Frequently Asked Questions</h2>
+        </ScrollReveal>
         <ul className={styles.faqList}>
           {faqData.map((faq, index) => (
-            <li key={index} className={styles.faqListItem}>
-              <button
-                className={styles.faqQuestionBtn}
-                onMouseEnter={() => setOpenFaq(index)}
-                onMouseLeave={()=> setOpenFaq(index)}
-                onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                aria-expanded={openFaq === index}
-                aria-controls={`faq-answer-${index}`}
-              >
-                <span>{faq.q}</span>
-                <i className={`bi bi-chevron-${openFaq === index ? 'up' : 'down'} ${styles.faqIcon}`}></i>
-              </button>
-              {openFaq === index && (
-                <div id={`faq-answer-${index}`} className={styles.faqAnswerList}>
-                  <p>{faq.a}</p>
-                </div>
-              )}
-            </li>
+            <ScrollReveal delay={index * 100} key={index}>
+              <li className={styles.faqListItem}>
+                <button
+                  className={styles.faqQuestionBtn}
+                  onMouseEnter={() => setOpenFaq(index)}
+                  onMouseLeave={()=> setOpenFaq(index)}
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  aria-expanded={openFaq === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span>{faq.q}</span>
+                  <i className={`bi bi-chevron-${openFaq === index ? 'up' : 'down'} ${styles.faqIcon}`}></i>
+                </button>
+                {openFaq === index && (
+                  <div id={`faq-answer-${index}`} className={styles.faqAnswerList}>
+                    <p>{faq.a}</p>
+                  </div>
+                )}
+              </li>
+            </ScrollReveal>
           ))}
         </ul>
       </section>
@@ -262,6 +275,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
       )}
-    </main>
+    </div>
   );
 }
