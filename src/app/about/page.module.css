@@ -96,6 +96,15 @@
   margin: 0 auto 1.5rem;
 }
 
+.memberImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  object-fit: cover;
+  border: 3px solid #0984e3;
+}
+
 .teamMember h3 {
   color: #2d3436;
   margin-bottom: 0.5rem;

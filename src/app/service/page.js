@@ -1,9 +1,38 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import ScrollReveal from '../components/ScrollReveal';
+import { supabase } from '../../integrations/supabase/client';
+import Link from 'next/link';
 
 export default function ServicePage() {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .eq('published', true)
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        if (error) throw error;
+        console.log('Fetched blog posts:', data);
+        setBlogPosts(data || []);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
+
   return (
     <div className={styles.container}>
       <ScrollReveal>
@@ -113,6 +142,47 @@ export default function ServicePage() {
           </section>
         </ScrollReveal>
       </div>
+
+      {/* Latest in EV Tech Section */}
+      <section className={styles.blogSection}>
+        <ScrollReveal>
+          <h2>Latest in EV Tech</h2>
+        </ScrollReveal>
+        <div className={styles.blogGrid}>
+          {loading ? (
+            <p>Loading blog posts...</p>
+          ) : (
+            blogPosts.map((post, index) => {
+              console.log('Rendering blog post:', post);
+              return (
+                <ScrollReveal key={post.id} delay={index * 200}>
+                  <div className={styles.blogCard}>
+                    {post.image_url && (
+                      <div className={styles.blogImage}>
+                        <img src={post.image_url} alt={post.title} />
+                      </div>
+                    )}
+                    <div className={styles.blogContent}>
+                      <h3>{post.title}</h3>
+                      <p className={styles.blogMeta}>
+                        By {post.author} • {new Date(post.created_at).toLocaleDateString()}
+                      </p>
+                      <p className={styles.blogExcerpt}>
+                        {post.content.length > 150 
+                          ? `${post.content.substring(0, 150)}...` 
+                          : post.content}
+                      </p>
+                      <Link href={`/blog/${post.id}`} className={styles.readMore}>
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })
+          )}
+        </div>
+      </section>
     </div>
   );
 } 

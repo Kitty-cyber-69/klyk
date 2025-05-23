@@ -2,8 +2,33 @@
 
 import styles from './page.module.css';
 import ScrollReveal from '../components/ScrollReveal';
+import { useEffect, useState } from 'react';
+import { supabase } from '../../integrations/supabase/client';
 
 export default function AboutPage() {
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('team_members')
+          .select('*')
+          .order('created_at', { ascending: true });
+
+        if (error) throw error;
+        setTeamMembers(data || []);
+      } catch (error) {
+        console.error('Error fetching team members:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTeamMembers();
+  }, []);
+
   return (
     <div className={styles.container}>
       <ScrollReveal>
@@ -70,30 +95,28 @@ export default function AboutPage() {
           <h2>Our Team</h2>
         </ScrollReveal>
         <div className={styles.teamGrid}>
-          <ScrollReveal delay={0}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>John Doe</h3>
-              <p className={styles.role}>Lead Instructor</p>
-              <p>20+ years of experience in automotive technology</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>Jane Smith</h3>
-              <p className={styles.role}>Technical Director</p>
-              <p>Certified EV specialist with extensive industry experience</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>Mike Johnson</h3>
-              <p className={styles.role}>Curriculum Developer</p>
-              <p>Expert in educational content creation and technical training</p>
-            </div>
-          </ScrollReveal>
+          {loading ? (
+            <p>Loading team members...</p>
+          ) : (
+            teamMembers.map((member, index) => (
+              <ScrollReveal key={member.id} delay={index * 100}>
+                <div className={styles.teamMember}>
+                  {member.image_url ? (
+                    <img 
+                      src={member.image_url} 
+                      alt={member.name} 
+                      className={styles.memberImage}
+                    />
+                  ) : (
+                    <div className={styles.placeholderImage}></div>
+                  )}
+                  <h3>{member.name}</h3>
+                  <p className={styles.role}>{member.designation}</p>
+                  {member.bio && <p>{member.bio}</p>}
+                </div>
+              </ScrollReveal>
+            ))
+          )}
         </div>
       </section>
     </div>
