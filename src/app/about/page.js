@@ -2,6 +2,7 @@
 
 import styles from './page.module.css';
 import ScrollReveal from '../components/ScrollReveal';
+import TeamSection from '../components/TeamSection';
 
 export default function AboutPage() {
   return (
@@ -65,37 +66,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={styles.team}>
-        <ScrollReveal>
-          <h2>Our Team</h2>
-        </ScrollReveal>
-        <div className={styles.teamGrid}>
-          <ScrollReveal delay={0}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>John Doe</h3>
-              <p className={styles.role}>Lead Instructor</p>
-              <p>20+ years of experience in automotive technology</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>Jane Smith</h3>
-              <p className={styles.role}>Technical Director</p>
-              <p>Certified EV specialist with extensive industry experience</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <div className={styles.teamMember}>
-              <div className={styles.placeholderImage}></div>
-              <h3>Mike Johnson</h3>
-              <p className={styles.role}>Curriculum Developer</p>
-              <p>Expert in educational content creation and technical training</p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <TeamSection />
     </div>
   );
 } 

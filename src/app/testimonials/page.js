@@ -1,10 +1,48 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import styles from './page.module.css';
 import CountUp from '../components/CountUp';
 import ScrollReveal from '../components/ScrollReveal';
 
+// Initialize Supabase client
+const supabaseUrl = 'https://netynunpwjzbvohdemci.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ldHludW5wd2p6YnZvaGRlbWNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4NzcyMzEsImV4cCI6MjA2MzQ1MzIzMX0.VkNkhbrkqJO9-LpeHrKYsHXwchuJPLZmwcUu2LYpWmI';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export default function TestimonialsPage() {
+  const [statistics, setStatistics] = useState({
+    programs_delivered: 0,
+    professionals_trained: 0,
+    satisfaction_rate: 0,
+    corporate_partners: 0
+  });
+
+  useEffect(() => {
+    async function fetchStatistics() {
+      try {
+        const { data, error } = await supabase
+          .from('statistics')
+          .select('*')
+          .single();
+
+        if (error) {
+          console.error('Error fetching statistics:', error);
+          return;
+        }
+
+        if (data) {
+          setStatistics(data);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    fetchStatistics();
+  }, []);
+
   return (
     <div className={styles.container}>
       <ScrollReveal>
@@ -20,7 +58,7 @@ export default function TestimonialsPage() {
           <ScrollReveal delay={0}>
             <div className={styles.statCard}>
               <div className={styles.statNumber}>
-                <CountUp end="500" suffix="+" />
+                <CountUp end={statistics.programs_delivered} suffix="+" />
               </div>
               <div className={styles.statLabel}>Training Programs Delivered</div>
             </div>
@@ -29,7 +67,7 @@ export default function TestimonialsPage() {
           <ScrollReveal delay={200}>
             <div className={styles.statCard}>
               <div className={styles.statNumber}>
-                <CountUp end="10000" suffix="+" />
+                <CountUp end={statistics.professionals_trained} suffix="+" />
               </div>
               <div className={styles.statLabel}>Professionals Trained</div>
             </div>
@@ -38,7 +76,7 @@ export default function TestimonialsPage() {
           <ScrollReveal delay={400}>
             <div className={styles.statCard}>
               <div className={styles.statNumber}>
-                <CountUp end="95" suffix="%" />
+                <CountUp end={statistics.satisfaction_rate} suffix="%" />
               </div>
               <div className={styles.statLabel}>Client Satisfaction Rate</div>
             </div>
@@ -47,7 +85,7 @@ export default function TestimonialsPage() {
           <ScrollReveal delay={600}>
             <div className={styles.statCard}>
               <div className={styles.statNumber}>
-                <CountUp end="50" suffix="+" />
+                <CountUp end={statistics.corporate_partners} suffix="+" />
               </div>
               <div className={styles.statLabel}>Corporate Partners</div>
             </div>
