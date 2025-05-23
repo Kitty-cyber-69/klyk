@@ -221,7 +221,7 @@ a.secondary {
 .ctaBtn {
   display: inline-block;
   padding: 0.7rem 1.5rem;
-  background: #0984e3;
+  background: #0444f4;
   color: white;
   border-radius: 50px;
   font-weight: 600;
@@ -408,7 +408,7 @@ a.secondary {
 .badgeIcon {
   width: 80px;
   height: 80px;
-  background: #0984e3;
+  background: #000048;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -496,7 +496,7 @@ a.secondary {
 .newsIcon {
   width: 60px;
   height: 60px;
-  background: #0984e3;
+  background: #0444f4;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -579,7 +579,7 @@ a.secondary {
 .portfolioIcon {
   width: 80px;
   height: 80px;
-  background: #0984e3;
+  background: #000048;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -769,4 +769,362 @@ a.secondary {
   box-shadow: 0 8px 24px rgba(9, 132, 227, 0.12);
   background : transparent;
   object-fit: contain;
+}
+
+/* Blog Section Styles */
+.blogSection {
+  padding: 4rem 2rem;
+  background-color: var(--background-secondary);
+}
+
+.blogSection h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  font-size: 2rem;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blogCard {
+  background: var(--background-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.blogCard:hover {
+  transform: translateY(-5px);
+}
+
+.blogImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.blogImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blogContent {
+  padding: 1.5rem;
+}
+
+.blogContent h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.blogMeta {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.blogExcerpt {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.readMore {
+  display: inline-block;
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.readMore:hover {
+  color: var(--accent-secondary);
+}
+
+/* Training Programs Section */
+.trainingSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  text-align: center;
+}
+
+.trainingSection h2 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  color: #636e72;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.trainingCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.trainingCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.trainingIcon {
+  width: 100px;
+  height: 100px;
+  background: #0444f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(9, 132, 227, 0.3);
+  transition: all 0.3s ease;
+}
+
+.trainingCard:hover .trainingIcon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(9, 132, 227, 0.4);
+}
+
+.trainingIcon i {
+  font-size: 2.5rem;
+}
+
+.trainingContent {
+  text-align: left;
+  flex: 1;
+}
+
+.trainingContent h3 {
+  font-size: 1.5rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.trainingContent p {
+  color: #636e72;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.trainingFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.trainingFeatures li {
+  color: #2d3436;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trainingFeatures li::before {
+  content: '✓';
+  color: #0984e3;
+  font-weight: bold;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #0444f4;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(9, 132, 227, 0.3);
+}
+
+.ctaButton:hover {
+  background: #cc5500;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(9, 132, 227, 0.4);
+}
+
+@media (max-width: 768px) {
+  .trainingCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .trainingContent {
+    text-align: center;
+  }
+
+  .trainingFeatures {
+    justify-content: center;
+  }
+
+  .trainingFeatures li {
+    justify-content: center;
+  }
+}
+
+/* Training Modal Styles */
+.trainingModalContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.trainingList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.trainingItem {
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.trainingItem:hover {
+  transform: translateY(-5px);
+}
+
+.trainingImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.trainingImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trainingDetails {
+  padding: 1.5rem;
+}
+
+.trainingDetails h3 {
+  font-size: 1.5rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.trainingDetails p {
+  color: #636e72;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.trainingInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2d3436;
+}
+
+.infoItem i {
+  color: #0984e3;
+  font-size: 1.2rem;
+}
+
+.registerButton {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #0984e3;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(9, 132, 227, 0.3);
+}
+
+.registerButton:hover {
+  background: #0873c4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(9, 132, 227, 0.4);
+}
+
+@media (max-width: 768px) {
+  .trainingModalContent {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .trainingInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .trainingImage {
+    height: 150px;
+  }
+}
+
+.formStatus {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.submitBtn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none !important;
 }

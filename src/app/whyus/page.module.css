@@ -20,7 +20,7 @@
 
 .subtitle {
   font-size: 1.5rem;
-  color: #0984e3;
+  color: #040450;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
@@ -36,6 +36,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  align-items: stretch;
 }
 
 .featureCard {
@@ -44,6 +45,9 @@
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .featureCard:hover {
@@ -53,12 +57,13 @@
 .featureIcon {
   width: 60px;
   height: 60px;
-  background: #0984e3;
+  background: #000048;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  flex-shrink: 0;
 }
 
 .featureIcon i {
@@ -70,11 +75,14 @@
   font-size: 1.5rem;
   color: #2d3436;
   margin-bottom: 1rem;
+  min-height: 3.6rem; /* Approximately 2 lines of text */
 }
 
 .featureCard p {
   color: #636e72;
   line-height: 1.6;
+  flex: 1;
+  margin: 0;
 }
 
 /* Lead Capture Form Styles */
@@ -140,7 +148,7 @@
 }
 
 .submitButton {
-  background: #0984e3;
+  background: #0444f4;
   color: white;
   padding: 1rem;
   border: none;
@@ -152,7 +160,8 @@
 }
 
 .submitButton:hover {
-  background: #0873c4;
+  background: #7cc444;
+  color: #000000;
 }
 
 .contactInfo {
@@ -171,6 +180,32 @@
 
 .contactItem i {
   color: #0984e3;
+}
+
+.formStatus {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.submitButton:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
 @media (max-width: 1024px) {

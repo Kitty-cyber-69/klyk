@@ -58,15 +58,15 @@ export default function Footer() {
             <ul className={styles.contactInfo}>
               <li>
                 <i className="bi bi-geo-alt"></i>
-                <span>123 Tech Street, Innovation City</span>
+                <span>Address</span>
               </li>
               <li>
                 <i className="bi bi-telephone"></i>
-                <span>+1 (555) 123-4567</span>
+                <span>xxxxxxxxxx</span>
               </li>
               <li>
                 <i className="bi bi-envelope"></i>
-                <span>contact@klyk.com</span>
+                <span>klyktechnosolutions@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -77,11 +77,11 @@ export default function Footer() {
           <div className={styles.copyright}>
             © {new Date().getFullYear()} KLYK. All rights reserved.
           </div>
-          <div className={styles.legalLinks}>
+          {/* <div className={styles.legalLinks}>
             <Link href="/privacy">Privacy Policy</Link>
             <Link href="/terms">Terms of Service</Link>
             <Link href="/cookies">Cookie Policy</Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

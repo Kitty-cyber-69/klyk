@@ -67,41 +67,41 @@ export default function TestimonialsPage() {
             <p>Loading statistics...</p>
           ) : statistics && (
             <>
-              <ScrollReveal delay={0}>
-                <div className={styles.statCard}>
-                  <div className={styles.statNumber}>
+          <ScrollReveal delay={0}>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>
                     <CountUp end={statistics.programs_delivered} suffix="+" />
-                  </div>
-                  <div className={styles.statLabel}>Training Programs Delivered</div>
-                </div>
-              </ScrollReveal>
+              </div>
+              <div className={styles.statLabel}>Training Programs Delivered</div>
+            </div>
+          </ScrollReveal>
 
-              <ScrollReveal delay={200}>
-                <div className={styles.statCard}>
-                  <div className={styles.statNumber}>
+          <ScrollReveal delay={200}>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>
                     <CountUp end={statistics.professionals_trained} suffix="+" />
-                  </div>
-                  <div className={styles.statLabel}>Professionals Trained</div>
-                </div>
-              </ScrollReveal>
+              </div>
+              <div className={styles.statLabel}>Professionals Trained</div>
+            </div>
+          </ScrollReveal>
 
-              <ScrollReveal delay={400}>
-                <div className={styles.statCard}>
-                  <div className={styles.statNumber}>
+          <ScrollReveal delay={400}>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>
                     <CountUp end={statistics.satisfaction_rate} suffix="%" />
-                  </div>
-                  <div className={styles.statLabel}>Client Satisfaction Rate</div>
-                </div>
-              </ScrollReveal>
+              </div>
+              <div className={styles.statLabel}>Client Satisfaction Rate</div>
+            </div>
+          </ScrollReveal>
 
-              <ScrollReveal delay={600}>
-                <div className={styles.statCard}>
-                  <div className={styles.statNumber}>
+          <ScrollReveal delay={600}>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>
                     <CountUp end={statistics.corporate_partners} suffix="+" />
-                  </div>
-                  <div className={styles.statLabel}>Corporate Partners</div>
-                </div>
-              </ScrollReveal>
+              </div>
+              <div className={styles.statLabel}>Corporate Partners</div>
+            </div>
+          </ScrollReveal>
             </>
           )}
         </div>
@@ -118,12 +118,12 @@ export default function TestimonialsPage() {
           ) : (
             testimonials.map((testimonial, index) => (
               <ScrollReveal key={testimonial.id} delay={index * 200}>
-                <div className={styles.testimonialCard}>
-                  <div className={styles.quoteIcon}>
-                    <i className="bi bi-quote"></i>
-                  </div>
+            <div className={styles.testimonialCard}>
+              <div className={styles.quoteIcon}>
+                <i className="bi bi-quote"></i>
+              </div>
                   <p className={styles.testimonialText}>{testimonial.content}</p>
-                  <div className={styles.testimonialAuthor}>
+              <div className={styles.testimonialAuthor}>
                     {testimonial.image_url ? (
                       <img 
                         src={testimonial.image_url} 
@@ -131,9 +131,9 @@ export default function TestimonialsPage() {
                         className={styles.authorImage}
                       />
                     ) : (
-                      <div className={styles.authorImage}></div>
+                <div className={styles.authorImage}></div>
                     )}
-                    <div className={styles.authorInfo}>
+                <div className={styles.authorInfo}>
                       <h4>{testimonial.name}</h4>
                       {testimonial.company && <p>{testimonial.company}</p>}
                       {testimonial.rating && (
@@ -143,10 +143,10 @@ export default function TestimonialsPage() {
                           ))}
                         </div>
                       )}
-                    </div>
-                  </div>
                 </div>
-              </ScrollReveal>
+              </div>
+            </div>
+          </ScrollReveal>
             ))
           )}
         </div>
@@ -163,13 +163,13 @@ export default function TestimonialsPage() {
           ) : (
             partners.map((partner, index) => (
               <ScrollReveal key={partner.id} delay={index * 200}>
-                <div className={styles.logoCard}>
+            <div className={styles.logoCard}>
                   {partner.logo_url ? (
-                    <img 
+              <img 
                       src={partner.logo_url} 
                       alt={partner.name} 
-                      className={styles.logoImage}
-                    />
+                className={styles.logoImage}
+              />
                   ) : (
                     <div className={styles.placeholderLogo}></div>
                   )}
@@ -184,8 +184,8 @@ export default function TestimonialsPage() {
                       Visit Website
                     </a>
                   )}
-                </div>
-              </ScrollReveal>
+            </div>
+          </ScrollReveal>
             ))
           )}
         </div>

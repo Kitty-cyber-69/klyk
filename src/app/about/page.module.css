@@ -19,10 +19,10 @@
 }
 
 .subtitle {
-  font-size: 1.25rem;
-  color: #636e72;
-  max-width: 600px;
-  margin: 0 auto;
+  font-size: 1.5rem;
+  color: #040450;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
 .story, .mission, .team {
@@ -56,6 +56,9 @@
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .valueCard:hover {
@@ -71,6 +74,7 @@
 .valueCard p {
   color: #636e72;
   line-height: 1.6;
+  flex: 1;
 }
 
 .teamGrid {

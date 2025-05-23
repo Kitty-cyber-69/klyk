@@ -100,7 +100,7 @@ export default function AboutPage() {
           ) : (
             teamMembers.map((member, index) => (
               <ScrollReveal key={member.id} delay={index * 100}>
-                <div className={styles.teamMember}>
+            <div className={styles.teamMember}>
                   {member.image_url ? (
                     <img 
                       src={member.image_url} 
@@ -108,13 +108,13 @@ export default function AboutPage() {
                       className={styles.memberImage}
                     />
                   ) : (
-                    <div className={styles.placeholderImage}></div>
+              <div className={styles.placeholderImage}></div>
                   )}
                   <h3>{member.name}</h3>
                   <p className={styles.role}>{member.designation}</p>
                   {member.bio && <p>{member.bio}</p>}
-                </div>
-              </ScrollReveal>
+            </div>
+          </ScrollReveal>
             ))
           )}
         </div>

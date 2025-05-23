@@ -1,9 +1,69 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function WhyUsPage() {
+  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Add useEffect to clear form status after 3 seconds
+  useEffect(() => {
+    if (formStatus.message) {
+      const timer = setTimeout(() => {
+        setFormStatus({ type: '', message: '' });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [formStatus.message]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'd252ded0-1d87-4f26-9b4a-5e91569e43ae',
+          name: e.target.name.value,
+          email: e.target.email.value,
+          phone: e.target.phone.value,
+          interest: e.target.interest.value,
+          message: e.target.message.value,
+          subject: 'New Registration Interest from KLYK Website',
+          redirect: false
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus({
+          type: 'success',
+          message: 'Thank you for your interest! We will contact you soon.',
+        });
+        e.target.reset();
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <ScrollReveal>
@@ -82,57 +142,60 @@ export default function WhyUsPage() {
                 Join our next weekend batch and transform your career in EV technology
               </p>
               
-              <form className={styles.contactForm}>
+              {formStatus.message && (
+                <div className={`${styles.formStatus} ${styles[formStatus.type]}`}>
+                  {formStatus.message}
+                </div>
+              )}
+
+              <form className={styles.contactForm} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                  <input type="text" placeholder="Your Name" required />
+                  <input type="text" name="name" placeholder="Your Name" required />
                 </div>
                 
                 <div className={styles.formGroup}>
-                  <input type="email" placeholder="Your Email" required />
+                  <input type="email" name="email" placeholder="Your Email" required />
                 </div>
                 
                 <div className={styles.formGroup}>
-                  <input type="tel" placeholder="Your Phone" />
+                  <input type="tel" name="phone" placeholder="Your Phone" required />
                 </div>
                 
                 <div className={styles.formGroup}>
-                  <select required>
+                  <select name="interest" required>
                     <option value="">Select Your Interest</option>
-                    <option value="weekend">Weekend Live Classes</option>
-                    <option value="corporate">Corporate Training</option>
-                    <option value="online">Online Courses</option>
-                    <option value="custom">Custom Program</option>
+                    <option value="service request">Service Request</option>
+                    <option value="class registration">Class Registration</option>
+                    <option value="collaboration">Collaboration</option>
+                    <option value="custom program">Custom Program</option>
                   </select>
                 </div>
 
                 <div className={styles.formGroup}>
-                  <textarea placeholder="Tell us about your goals" rows="4"></textarea>
+                  <textarea name="message" placeholder="Describe your query" rows="4" required></textarea>
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label className={styles.newsletterLabel}>
-                    <input type="checkbox" />
-                    Subscribe to our newsletter for EV industry updates
-                  </label>
-                </div>
-
-                <button type="submit" className={styles.submitButton}>
-                  Register Your Interest
+                <button 
+                  type="submit" 
+                  className={styles.submitButton}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Register Your Interest'}
                 </button>
               </form>
 
               <div className={styles.contactInfo}>
                 <div className={styles.contactItem}>
                   <i className="bi bi-envelope"></i>
-                  <span>contact@klyk.com</span>
+                  <span>klyktechnosolutions@gmail.com</span>
                 </div>
                 <div className={styles.contactItem}>
                   <i className="bi bi-telephone"></i>
-                  <span>+1 (555) 123-4567</span>
+                  <span>xxxxxxxxxx</span>
                 </div>
                 <div className={styles.contactItem}>
                   <i className="bi bi-geo-alt"></i>
-                  <span>123 Tech Street, Innovation City</span>
+                  <span>Address</span>
                 </div>
               </div>
             </div>
