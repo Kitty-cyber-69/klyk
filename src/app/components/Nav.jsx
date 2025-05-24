@@ -3,59 +3,84 @@ import React, { useState, useEffect } from 'react'
 import nav from '../data/nav'
 import Link from 'next/link';
 import './nav.css';
+import { usePathname } from 'next/navigation';
 
 export default function Nav() {
-
     const [scroll, setScroll] = useState(0);
-    const [navList, setNavList] = useState(nav);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        const handleScroll = () => {
             setScroll(window.scrollY);
-        });
-        return () => {
-            window.removeEventListener('scroll', () => {
-                setScroll(window.scrollY);
-            });
         };
-    }, [scroll]);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
-    const handleNavOnClick = id => {
-        const newNavList = navList.map(nav => {
-            nav.active = false;
-            if (nav.id === id) nav.active = true;
-            return nav;
-        });
-
-        setNavList(newNavList);
-    }
-
-    const handleOpenSearchForm = () => {
-        document.body.classList.remove('box-collapse-closed');
-        document.body.classList.add('box-collapse-open');
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+        const navbarCollapse = document.getElementById('navbarDefault');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        
+        if (navbarCollapse) {
+            navbarCollapse.classList.toggle('show');
+        }
+        if (navbarToggler) {
+            navbarToggler.classList.toggle('active');
+        }
     };
+
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const navbarCollapse = document.getElementById('navbarDefault');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            
+            if (isMenuOpen && 
+                navbarCollapse && 
+                !navbarCollapse.contains(event.target) && 
+                !navbarToggler.contains(event.target)) {
+                setIsMenuOpen(false);
+                navbarCollapse.classList.remove('show');
+                navbarToggler.classList.remove('active');
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]);
+
+    // Close menu when route changes
+    useEffect(() => {
+        setIsMenuOpen(false);
+        const navbarCollapse = document.getElementById('navbarDefault');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        
+        if (navbarCollapse) {
+            navbarCollapse.classList.remove('show');
+        }
+        if (navbarToggler) {
+            navbarToggler.classList.remove('active');
+        }
+    }, [pathname]);
+
     return (
         <nav className={`navbar navbar-default navbar-expand-lg fixed-top ${scroll > 100 ? 'navbar-raduce' : 'navbar-trans'}`}>
-            <div
-                className="container"
-                style={{ position: 'relative', height: '70px' }} // Adjust height if needed
-            >
+            <div className="container">
                 {/* Left: Brand (logo) */}
                 <a
                     className="navbar-brand text-brand"
                     href="/"
-                    style={{
-                        position: 'absolute',
-                        left: '20px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 10,
-                    }}
                 >
                     <img
-                        src="/logo.png"
+                        src="/images/logo.png"
                         alt="KLYK Logo"
-                        style={{ height: '120px', objectFit: 'contain' }} // Change size freely here
+                        style={{ height: '120px', objectFit: 'contain' }}
                     />
                 </a>
 
@@ -63,59 +88,33 @@ export default function Nav() {
                 <div
                     className="navbar-collapse collapse justify-content-center"
                     id="navbarDefault"
-                    style={{
-                        position: 'absolute',
-                        left: '55%',
-                        top: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        zIndex: 10,
-                    }}
                 >
                     <ul className="navbar-nav">
-                        {navList.map((item) => (
+                        {nav.map((item) => (
                             <li className="nav-item" key={item.id}>
                                 <Link
-                                    className={`nav-link ${item.active ? 'active' : ''}`}
+                                    className={`nav-link${pathname === item.link ? ' active' : ''}`}
                                     href={item.link}
-                                    onClick={() => handleNavOnClick(item.id)}
                                 >
-                                    {item.name === 'Home' ? (
-                                        <i className="bi bi-house-door-fill nav-link"></i>
-                                    ) : (
-                                        item.name
-                                    )}
+                                    {item.name}
                                 </Link>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                {/* Right: Toggler + Search */}
-
+                {/* Right: Toggler */}
                 <button
                     className="navbar-toggler"
                     type="button"
                     aria-label="Toggle navigation"
-                    onClick={() => {
-                        document.getElementById('navbarDefault').classList.toggle('show');
-                    }}
-                    style={{
-                        position: 'absolute',
-                        right: '20px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 20,
-                        display: 'none', // default hidden, shown in CSS for mobile
-                    }}
+                    onClick={toggleMenu}
                 >
-                    <span style={{ display: 'block', width: 24, height: 3, background: '#222', margin: '4px 0', borderRadius: 2 }}></span>
-                    <span style={{ display: 'block', width: 24, height: 3, background: '#222', margin: '4px 0', borderRadius: 2 }}></span>
-                    <span style={{ display: 'block', width: 24, height: 3, background: '#222', margin: '4px 0', borderRadius: 2 }}></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-
             </div>
         </nav>
-
-
-    )
+    );
 }
