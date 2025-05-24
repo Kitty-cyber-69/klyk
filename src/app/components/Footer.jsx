@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './Footer.module.css';
 
@@ -13,16 +15,16 @@ export default function Footer() {
               Empowering professionals with cutting-edge EV technology training through live, interactive sessions.
             </p>
             <div className={styles.socialLinks}>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i className="bi bi-linkedin"></i>
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <i className="bi bi-twitter-x"></i>
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <i className="bi bi-facebook"></i>
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <i className="bi bi-youtube"></i>
               </a>
             </div>
@@ -57,16 +59,16 @@ export default function Footer() {
             <h4>Contact Us</h4>
             <ul className={styles.contactInfo}>
               <li>
-                <i className="bi bi-geo-alt"></i>
-                <span>Address</span>
+                <i className="bi bi-geo-alt" aria-hidden="true"></i>
+                <span>KLYK Techno Solutions, India</span>
               </li>
               <li>
-                <i className="bi bi-telephone"></i>
-                <span>xxxxxxxxxx</span>
+                <i className="bi bi-telephone" aria-hidden="true"></i>
+                <span>+91 1234567890</span>
               </li>
               <li>
-                <i className="bi bi-envelope"></i>
-                <span>klyktechnosolutions@gmail.com</span>
+                <i className="bi bi-envelope" aria-hidden="true"></i>
+                <span>contact@klyk.com</span>
               </li>
             </ul>
           </div>
@@ -77,11 +79,6 @@ export default function Footer() {
           <div className={styles.copyright}>
             © {new Date().getFullYear()} KLYK. All rights reserved.
           </div>
-          {/* <div className={styles.legalLinks}>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms of Service</Link>
-            <Link href="/cookies">Cookie Policy</Link>
-          </div> */}
         </div>
       </div>
     </footer>

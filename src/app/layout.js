@@ -1,35 +1,37 @@
 import './globals.css';
-import Nav from './components/Nav';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import ClientNav from './components/ClientNav';
 import Footer from './components/Footer';
+import ClientLayout from './components/ClientLayout';
+import styles from './layout.module.css';
 
 export const metadata = {
-  title: {
-    default: 'KLYK - EV Technology Training',
-    template: '%s | KLYK'
-  },
-  description: 'Empowering professionals with cutting-edge EV technology training through live, interactive sessions. Expert-led courses in electric vehicle technology.',
-  keywords: ['EV training', 'electric vehicle technology', 'professional training', 'automotive education', 'EV certification'],
+  title: 'KLYK - EV Technology Training',
+  description: 'Empowering professionals with cutting-edge EV technology training through live, interactive sessions.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload critical assets */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/fonts/bootstrap-icons.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-        />
+        {/* Add preconnect for external resources */}
+        <link rel="preconnect" href="https://api.web3forms.com" />
+        <link rel="preconnect" href="https://qhqdooqzaadgpwniyfqk.supabase.co" />
       </head>
-      <body>
-        <Nav />
-        {children}
-        <Footer />
+      <body className={styles.body}>
+        <ClientLayout>
+          <ClientNav />
+          <div className={styles.mainContent}>{children}</div>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
-    const { name, phone, address, email, query } = await request.json();
+    const { name, phone_number, address, email, message, req_type } = await request.json();
 
     // Create a transporter using Gmail
     const transporter = nodemailer.createTransport({
@@ -22,11 +22,12 @@ export async function POST(request) {
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Phone:</strong> ${phone_number}</p>
         <p><strong>Address:</strong> ${address}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Query:</strong></p>
-        <p>${query}</p>
+        <p><strong>Request Type:</strong> ${req_type}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
       `,
     };
 

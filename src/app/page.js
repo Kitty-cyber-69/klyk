@@ -53,22 +53,42 @@ export default function Home() {
     setFormStatus({ type: '', message: '' });
 
     try {
+      // Store in Supabase first
+      const { error: supabaseError } = await supabase
+        .from('contact_us')
+        .insert({
+          name: e.target.name.value,
+          email: e.target.email.value,
+          phone_number: e.target.phone_number.value,
+          address: e.target.address.value,
+          message: e.target.message.value,
+          req_type: e.target.req_type.value
+        });
+
+      if (supabaseError) {
+        throw new Error(supabaseError.message);
+      }
+
+      // Then send email
+      const formData = {
+        access_key: 'd252ded0-1d87-4f26-9b4a-5e91569e43ae',
+        name: e.target.name.value,
+        email: e.target.email.value,
+        phone: e.target.phone_number.value,
+        address: e.target.address.value,
+        message: e.target.message.value,
+        req_type: e.target.req_type.value,
+        subject: 'New Contact Form Submission from KLYK Website',
+        redirect: false
+      };
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          access_key: 'd252ded0-1d87-4f26-9b4a-5e91569e43ae',
-          name: e.target.name.value,
-          phone: e.target.phone.value,
-          address: e.target.address.value,
-          email: e.target.email.value,
-          message: e.target.query.value,
-          subject: 'New Contact Form Submission from KLYK Website',
-          redirect: false
-        })
+        body: JSON.stringify(formData)
       });
 
       const result = await response.json();
@@ -79,14 +99,11 @@ export default function Home() {
           message: 'Thank you for your message! We will get back to you soon.',
         });
         e.target.reset();
-        setTimeout(() => {
-          handleCloseModal();
-        }, 3000);
       } else {
         throw new Error(result.message || 'Failed to send message');
       }
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error:', error);
       setFormStatus({
         type: 'error',
         message: 'Failed to send message. Please try again later.',
@@ -459,20 +476,31 @@ export default function Home() {
                 <input type="text" name="name" required />
               </label>
               <label>
+                Email
+                <input type="email" name="email" required />
+              </label>
+              <label>
                 Phone Number
-                <input type="tel" name="phone" required />
+                <input type="tel" name="phone_number" required />
               </label>
               <label>
                 Address
                 <input type="text" name="address" required />
               </label>
               <label>
-                Email
-                <input type="email" name="email" required />
+                Request Type
+                <select name="req_type" required>
+                  <option value="">Select Request Type</option>
+                  <option value="general_inquiry">General Inquiry</option>
+                  <option value="service_request">Service Request</option>
+                  <option value="class_registration">Class Registration</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="custom_program">Custom Program</option>
+                </select>
               </label>
               <label>
-                Your Query
-                <textarea name="query" rows={4} required />
+                Message
+                <textarea name="message" rows={4} required />
               </label>
               <motion.button 
                 type="submit" 
